@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Employees</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(120deg, #667eea, #764ba2);
+        min-height: 100vh;
+        padding: 40px;
+    }
+
+    .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    thead {
+        background: linear-gradient(120deg, #667eea, #764ba2);
+        color: white;
+    }
+
+    th, td {
+        padding: 12px 14px;
+        text-align: center;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f4f6ff;
+    }
+
+    tr:hover {
+        background-color: #eef1ff;
+    }
+
+    th {
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+    }
+
+    .action-btn {
+        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        margin: 0 4px;
+        display: inline-block;
+    }
+
+    .edit-btn {
+        background-color: #667eea;
+        color: white;
+    }
+
+    .edit-btn:hover {
+        opacity: 0.85;
+    }
+
+    .delete-btn {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    .delete-btn:hover {
+        opacity: 0.85;
+    }
+
+    .top-actions {
+        text-align: right;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .top-actions a {
+        text-decoration: none;
+        padding: 8px 18px;
+        background: linear-gradient(120deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 20px;
+        font-size: 14px;
+    }
+
+    .top-actions a:hover {
+        opacity: 0.9;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Employee List</h2>
+
+    <div class="top-actions">
+        <a th:href="@{/employee/}">Home</a>
+        <a th:href="@{/employee/add-form}">+ Add New Employee</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Designation</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="employee : ${employeeList}">
+                <td>[[${employee.employeeId}]]</td>
+                <td>[[${employee.employeeName}]]</td>
+                <td>[[${employee.desg}]]</td>
+                <td>[[${employee.age}]]</td>
+                <td>₹ [[${employee.salary}]]</td>
+                <td>[[${employee.address}]]</td>
+                <td>
+                    <a class="action-btn edit-btn"
+                       th:href="@{/employee/edit/{id}(id=${employee.employeeId})}">
+                        Edit
+                    </a>
+
+                    <a class="action-btn delete-btn"
+                       th:href="@{/employee/delete/{id}(id=${employee.employeeId})}"
+                       onclick="return confirm('Are you sure you want to delete this event?');">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
