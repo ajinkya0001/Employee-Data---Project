@@ -37,5 +37,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 		empRepo.deleteById(id);
 		
 	}
+	
+	@Override
+	public List<Employee> searchEmployees(String name, String desg) {
+	    return empRepo.searchEmployees(name, desg);
+	}
 
 }
+
+

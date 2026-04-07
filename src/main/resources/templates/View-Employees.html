@@ -104,6 +104,13 @@
     .top-actions a:hover {
         opacity: 0.9;
     }
+    
+    .searchAction{
+    		
+    		margin: 20px 0px 15px 300px;
+    		content-padding: 20px;
+    		
+    }
 </style>
 
 </head>
@@ -132,6 +139,17 @@
         </thead>
 
         <tbody>
+        		<div class="searchAction">
+        			<form th:action="@{/employee/search}" method="get" style="margin-bottom:15px;">
+
+				    <input type="text" name="name" placeholder="Search by Name" style="padding:7px; ">
+				
+				    <input type="text" name="desg" placeholder="Filter by Designation" style="color: black; padding:7px;">
+				
+				    <button type="submit" style="padding:7px; background-color: lightgreen;">Search</button>
+				
+				</form>
+        		</div>
             <tr th:each="employee : ${employeeList}">
                 <td>[[${employee.employeeId}]]</td>
                 <td>[[${employee.employeeName}]]</td>
@@ -159,3 +177,5 @@
 
 </body>
 </html>
+
+

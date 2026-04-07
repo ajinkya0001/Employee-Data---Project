@@ -104,23 +104,7 @@
     	<img th:src="@{https://icons.veryicon.com/png/o/healthcate-medical/icon-of-yijie-cloud-system/department-employee-management.png}" height="80" width="100">
         <h1>Employee Data System</h1>
         <p>Manage Employee easily with create, view, edit and delete operations</p>
-	    <form th:action="@{/employee/search}">
-	    	<input type="text" name="eid" placeholder="Search Employee By Id">
-	    	<input type="submit" value="search">
-	    </form>
 	    
-	    <div th:if="${employee!=null}">
-	    	<h4>Employee Id : [[${employee.employeeId}]]</h4>
-	    	<h4>Employee Name : [[${employee.employeeName}]]</h4>
-	    	<h4>Designation : [[${employee.desg}]]</h4>
-	    	<h4>Age : [[${employee.age}]]</h4>
-	    	<h4>Salary : [[${employee.salary}]]</h4>
-	    	<h4>Address : [[${employee.address}]]</h4>
-	    </div>
-	    
-	    <div th:if="${notFound!=null}">
-	    	<h4 style="color:red">[[${notFound}]]</h4>
-	    </div>
     </div>
     
 
@@ -156,3 +140,5 @@
 
 </body>
 </html>
+
+

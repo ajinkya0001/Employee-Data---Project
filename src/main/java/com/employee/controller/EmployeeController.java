@@ -56,7 +56,7 @@ public class EmployeeController {
 	@GetMapping("/delete/{id}")
 	public String deleteEvent(@PathVariable int id ) {
 		empService.deleteEmployee(id);
-		return "redirect:/event/view-events";
+		return "redirect:/event/view-employees";
 	}
 	
 	@GetMapping("/")
@@ -65,14 +65,14 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/search")
-	public String searchEmployee(@RequestParam("eid") int eid, RedirectAttributes model) {   // RedirectAttributes Sub interface of Model Interface it is used to rediect to the home page  
+	public String searchEmployees(
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) String desg,
+			Model model) {
+
+		List<Employee> list = empService.searchEmployees(name, desg);
+		model.addAttribute("employeeList", list);
 		
-		Employee employee = empService.getEmployeeById(eid);
-		if(employee!=null) {
-			model.addFlashAttribute("employee", employee);
-		}else {
-			model.addFlashAttribute("notFound", "Employee Not Found With id : " + eid);
-		}
-		return "redirect:/employee/";
-	} 
+		return "View-Employees";
+	}
 }
