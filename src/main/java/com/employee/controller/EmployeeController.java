@@ -16,7 +16,7 @@ import java.util.List;
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("/employee")     // Use to map the HTTP request to the particular handler  More General 
 public class EmployeeController {
 
 //    private final EmployeeManagementCrudApplication employeeManagementCrudApplication;
@@ -24,12 +24,12 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService empService;
 	
-	@GetMapping("/add-form")
+	@GetMapping("/add-form")    // to Fetch a data
 	public String employeeForm() {
 		return "Add-Employee";
 	}
 	
-	@PostMapping("/add")
+	@PostMapping("/add")       // Use for Submit form data or saving new resource  (use for creating new Entries)
 	public String addEvent(@ModelAttribute Employee employee) {
 		
 		empService.saveEmployee(employee);
@@ -37,7 +37,7 @@ public class EmployeeController {
 		
 	}
 	
-	@GetMapping("/view-employees")
+	@GetMapping("/view-employees")     // Used for Display a page 
 	public String viewEmployees(Model model) {
 		List<Employee> elist = empService.getAllEmployees();
 		
@@ -48,7 +48,7 @@ public class EmployeeController {
 	
 	@GetMapping("/edit/{id}")
 	public String getEditForm(@PathVariable int id, Model model) { // Path variable get mapping into local variable  @PathVariable("id")
-		Employee existingEmployee = empService.getEmployeeById(id);  // existing event
+		Employee existingEmployee = empService.getEmployeeById(id);  // existing employee
 		model.addAttribute("employee", existingEmployee);
 		return "Edit-Form";
 	}
@@ -60,8 +60,12 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/")
-	public String home() {
-		return "Home";
+	public String home(Model model) {
+		
+		long total = empService.getTotalEmployees();
+	    model.addAttribute("totalEmployees", total);
+
+	    return "Home";
 	}
 
 	@GetMapping("/search")
@@ -75,4 +79,12 @@ public class EmployeeController {
 		
 		return "View-Employees";
 	}
+	
+//	@GetMapping("/")
+//	public String home(Model model) {
+//		long total = empService.getTotalEmployees();
+//		model.addAttribute("totalemployees", total);
+//		
+//		return "Home";
+//	}
 }

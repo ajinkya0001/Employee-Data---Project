@@ -17,4 +17,6 @@ public interface EmployeeRepo extends JpaRepository<Employee, Integer>{
 	List<Employee> searchEmployees(@Param("name") String name,
 	                               @Param("desg") String desg);
 	
+	@Query("SELECT COUNT(e) FROM Employee e")
+	long getTotalEmployees();
 }

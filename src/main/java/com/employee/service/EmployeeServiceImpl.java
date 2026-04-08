@@ -43,6 +43,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 	    return empRepo.searchEmployees(name, desg);
 	}
 
+	
+	@Override
+	public long getTotalEmployees() {
+		return empRepo.getTotalEmployees();
+	}
 }
 
 

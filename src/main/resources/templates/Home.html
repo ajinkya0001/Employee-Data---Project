@@ -110,6 +110,7 @@
 
     <div class="cards">
         <!-- Home -->
+      
         <div class="card">
             <h3>Home</h3>
             <p>Welcome to the Employee Management dashboard</p>
@@ -129,6 +130,13 @@
             <p>See all Employees and perform edit or delete</p>
             <a th:href="@{/employee/view-employees}">View Employees</a>
         </div>
+        
+        <!-- Get Total Employees -->
+        <div class="card">
+		    <h3>Total Employees</h3>
+		    <p>Count of total Employees</p>
+            <a th:href="@{/employee/view-employees}" th:text="${totalEmployees}" ></a>
+		</div>
 
     </div>
 
